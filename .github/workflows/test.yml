@@ -1,0 +1,23 @@
+name: Test
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the docker-compose stack
+        run: docker-compose -f docker-compose.test.yml up -d
+      - name: Check running containers
+        run: docker ps -a
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Test project
+        run: dotnet test --verbosity normal

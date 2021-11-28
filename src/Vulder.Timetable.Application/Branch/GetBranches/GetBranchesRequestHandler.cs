@@ -9,13 +9,14 @@ namespace Vulder.Timetable.Application.Branch.GetBranches;
 public class GetBranchesRequestHandler : IRequestHandler<GetBranchesRequestModel, List<Optivulcan.Pocos.Branch>?>
 {
     private readonly IBranchRepository _branchRepository;
-    
+
     public GetBranchesRequestHandler(IBranchRepository branchRepository)
     {
         _branchRepository = branchRepository;
     }
 
-    public async Task<List<Optivulcan.Pocos.Branch>?> Handle(GetBranchesRequestModel request, CancellationToken cancellationToken)
+    public async Task<List<Optivulcan.Pocos.Branch>?> Handle(GetBranchesRequestModel request,
+        CancellationToken cancellationToken)
     {
         var branchesFromCache = await _branchRepository.GetBranchById(request.SchoolId);
         if (branchesFromCache != null) return branchesFromCache;

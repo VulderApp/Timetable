@@ -1,7 +1,6 @@
 using Autofac;
 using Vulder.Timetable.Infrastructure.Redis.Interfaces;
 using Vulder.Timetable.Infrastructure.Redis.Repositories;
-using Module = Autofac.Module;
 
 namespace Vulder.Timetable.Infrastructure.Redis;
 

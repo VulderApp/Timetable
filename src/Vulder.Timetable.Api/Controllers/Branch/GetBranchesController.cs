@@ -9,7 +9,7 @@ namespace Vulder.Timetable.Api.Controllers.Branch;
 public class GetBranchesController : ControllerBase
 {
     private readonly IMediator _mediator;
-    
+
     public GetBranchesController(IMediator mediator)
     {
         _mediator = mediator;

@@ -1,6 +1,5 @@
 using System;
 using System.Net;
-using Flurl.Http.Testing;
 using Vulder.Timetable.Infrastructure.Api.Models;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
@@ -19,7 +18,7 @@ public class GetBranchesControllerTest
             Id = Guid.NewGuid(),
             Name = "ZSP 2 w Warszawie",
             SchoolUrl = "http://example.com",
-            TimetableUrl = "http://example.com/timetable",
+            TimetableUrl = "http://example.com/timetable"
         };
 
         var server = WireMockServer.Start();
@@ -31,13 +30,13 @@ public class GetBranchesControllerTest
                 .WithStatusCode(200)
                 .WithBodyAsJson(schoolModel)
             );
-        
+
         Environment.SetEnvironmentVariable("BASE_API_URL", server.Urls[0]);
 
         await using var application = new WebServerFactory();
         using var client = application.CreateClient();
         using var getBranchesResponse = await client.GetAsync($"branch/GetBranches?schoolId={schoolModel.Id}");
-        
+
         Assert.Equal(HttpStatusCode.OK, getBranchesResponse.StatusCode);
     }
 }

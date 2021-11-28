@@ -11,6 +11,10 @@ public static class SchoolApi
         => await Constants.BaseApiUrl
             .AppendPathSegment("/school/GetSchool")
             .SetQueryParam("schoolId", schoolId)
+            .WithClient(new FlurlClient(new HttpClient(new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (_, _, _, _) => true,
+            })))
             .GetAsync()
             .ReceiveJson<GetSchoolResponse>();
 }

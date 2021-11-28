@@ -9,9 +9,8 @@ namespace Vulder.Timetable.UnitTests.Infrastructure.Api;
 public class SchoolApiTest
 {
     [Fact]
-    public async void TestGetSchoolModel_CheckHashCode()
+    public async void TestGetSchoolModel_CheckIfNotNull()
     {
-        Environment.SetEnvironmentVariable("BASE_API_URL", "http://vulder.xyz");
         var schoolModel = new GetSchoolResponse
         {
             Id = Guid.NewGuid(),
@@ -21,13 +20,10 @@ public class SchoolApiTest
         };
         
         using var httpTest = new HttpTest();
-        httpTest.ForCallsTo("http://vulder.xyz/*")
-            .WithVerb("GET")
-            .WithoutQueryParam("schoolId")
-            .RespondWithJson(schoolModel);
+        httpTest.RespondWithJson(schoolModel);
 
         var result = await SchoolApi.GetSchoolModel(Guid.Empty);
         
-        Assert.Equal(schoolModel.GetHashCode(), result.GetHashCode());
+        Assert.NotNull(result);
     }
 }

@@ -21,7 +21,7 @@ public class GetTimetableRequestHandler : IRequestHandler<GetTimetableRequestMod
         if (timetableFromCache != null) return timetableFromCache;
 
         var schoolModel = await SchoolApi.GetSchoolModel(request.SchoolId);
-        var newTimetable = await Api.GetTimetableAsync(schoolModel.TimetableUrl);
+        var newTimetable = await Api.GetTimetableAsync(schoolModel.TimetableUrl + request.ShortPath);
         await _timetableRepository.Create(request.SchoolId, request.ClassName, newTimetable);
 
         return newTimetable;

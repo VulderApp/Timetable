@@ -16,12 +16,13 @@ public class GetTimetableController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetTimetable([FromQuery] Guid schoolId, [FromQuery] string className)
+    public async Task<IActionResult> GetTimetable([FromQuery] Guid schoolId, [FromQuery] string className, [FromQuery] string shortPath)
     {
         var timetable = await _mediator.Send(new GetTimetableRequestModel
         {
             SchoolId = schoolId,
-            ClassName = className
+            ClassName = className,
+            ShortPath = shortPath
         });
         
         return Ok(timetable);

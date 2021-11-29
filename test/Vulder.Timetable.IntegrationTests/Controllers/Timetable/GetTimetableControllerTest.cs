@@ -6,10 +6,13 @@ using WireMock.ResponseBuilders;
 using WireMock.Server;
 using Xunit;
 
-namespace Vulder.Timetable.IntegrationTests.Controllers.Branch;
+namespace Vulder.Timetable.IntegrationTests.Controllers.Timetable;
 
-public class GetBranchesControllerTest
+public class GetTimetableControllerTest
 {
+    private const string ClassName = "6A";
+    private const string ShortUrl = "%2Fplany%2Fs2.html";
+    
     [Fact]
     public async void GET_200_StatusCode()
     {
@@ -35,7 +38,7 @@ public class GetBranchesControllerTest
 
         await using var application = new WebServerFactory();
         using var client = application.CreateClient();
-        using var getBranchesResponse = await client.GetAsync($"branch/GetBranches?schoolId={schoolModel.Id}");
+        using var getBranchesResponse = await client.GetAsync($"timetable/GetTimetable?schoolId={schoolModel.Id}&className={ClassName}&shortPath={ShortUrl}");
 
         Assert.Equal(HttpStatusCode.OK, getBranchesResponse.StatusCode);
     }

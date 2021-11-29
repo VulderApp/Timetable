@@ -9,7 +9,7 @@ public class RedisContext
     {
         var redis = ConnectionMultiplexer.Connect(Constants.RedisConnectionString);
         Branches = redis.GetDatabase(0);
-        Timetables = redis.GetDatabase(1);
+        Timetables = redis.GetDatabase(0);
     }
 
     public IDatabase Branches { get; }

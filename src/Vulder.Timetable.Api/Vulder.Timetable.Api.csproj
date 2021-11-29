@@ -7,15 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0"/>
-        <PackageReference Include="MediatR" Version="9.0.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
+        <PackageReference Include="MediatR" Version="9.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Vulder.Timetable.Application\Vulder.Timetable.Application.csproj"/>
-        <ProjectReference Include="..\Vulder.Timetable.Core\Vulder.Timetable.Core.csproj"/>
-        <ProjectReference Include="..\Vulder.Timetable.Infrastructure\Vulder.Timetable.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Vulder.Timetable.Application\Vulder.Timetable.Application.csproj" />
+        <ProjectReference Include="..\Vulder.Timetable.Core\Vulder.Timetable.Core.csproj" />
+        <ProjectReference Include="..\Vulder.Timetable.Infrastructure\Vulder.Timetable.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

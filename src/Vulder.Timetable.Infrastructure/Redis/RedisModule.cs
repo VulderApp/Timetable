@@ -14,5 +14,9 @@ public class RedisModule : Module
         builder.RegisterType<BranchRepository>()
             .As<IBranchRepository>()
             .InstancePerLifetimeScope();
+
+        builder.RegisterType<TimetableRepository>()
+            .As<ITimetableRepository>()
+            .InstancePerLifetimeScope();
     }
 }

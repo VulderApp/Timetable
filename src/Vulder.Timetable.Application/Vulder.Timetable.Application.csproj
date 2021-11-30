@@ -7,14 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.3.0" />
-        <PackageReference Include="MediatR" Version="9.0.0" />
-        <PackageReference Include="Optivulcan" Version="0.1.1" />
+        <PackageReference Include="Autofac" Version="6.3.0"/>
+        <PackageReference Include="MediatR" Version="9.0.0"/>
+        <PackageReference Include="Optivulcan" Version="0.1.1"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Vulder.Timetable.Core\Vulder.Timetable.Core.csproj" />
-        <ProjectReference Include="..\Vulder.Timetable.Infrastructure\Vulder.Timetable.Infrastructure.csproj" />
+        <ProjectReference Include="..\Vulder.Timetable.Core\Vulder.Timetable.Core.csproj"/>
+        <ProjectReference Include="..\Vulder.Timetable.Infrastructure\Vulder.Timetable.Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>

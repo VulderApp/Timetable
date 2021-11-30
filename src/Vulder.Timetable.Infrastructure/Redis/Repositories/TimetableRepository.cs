@@ -6,13 +6,13 @@ namespace Vulder.Timetable.Infrastructure.Redis.Repositories;
 
 public class TimetableRepository : ITimetableRepository
 {
-    private IDatabase Timetables { get; }
-    
     public TimetableRepository(RedisContext context)
     {
         Timetables = context.Timetables;
     }
-    
+
+    private IDatabase Timetables { get; }
+
     public async Task Create(Guid? schoolId, string? className, Optivulcan.Pocos.Timetable timetable)
     {
         await Timetables.StringSetAsync(GetTimetableKey(schoolId, className), JsonConvert.SerializeObject(timetable));
@@ -22,8 +22,13 @@ public class TimetableRepository : ITimetableRepository
     {
         var timetable = await Timetables.StringGetAsync(GetTimetableKey(schoolId, className));
 
-        return timetable.ToString() == null ? null : JsonConvert.DeserializeObject<Optivulcan.Pocos.Timetable>(timetable.ToString());
+        return timetable.ToString() == null
+            ? null
+            : JsonConvert.DeserializeObject<Optivulcan.Pocos.Timetable>(timetable.ToString());
     }
 
-    private static string GetTimetableKey(Guid? schoolId, string? className) => $"{schoolId.ToString()}_{className}";
+    private static string GetTimetableKey(Guid? schoolId, string? className)
+    {
+        return $"{schoolId.ToString()}_{className}";
+    }
 }

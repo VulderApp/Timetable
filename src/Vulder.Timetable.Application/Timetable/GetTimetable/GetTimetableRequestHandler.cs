@@ -9,13 +9,14 @@ namespace Vulder.Timetable.Application.Timetable.GetTimetable;
 public class GetTimetableRequestHandler : IRequestHandler<GetTimetableRequestModel, Optivulcan.Pocos.Timetable>
 {
     private readonly ITimetableRepository _timetableRepository;
-    
+
     public GetTimetableRequestHandler(ITimetableRepository timetableRepository)
     {
         _timetableRepository = timetableRepository;
     }
-    
-    public async Task<Optivulcan.Pocos.Timetable> Handle(GetTimetableRequestModel request, CancellationToken cancellationToken)
+
+    public async Task<Optivulcan.Pocos.Timetable> Handle(GetTimetableRequestModel request,
+        CancellationToken cancellationToken)
     {
         var timetableFromCache = await _timetableRepository.GetTimetableById(request.SchoolId, request.ClassName);
         if (timetableFromCache != null) return timetableFromCache;

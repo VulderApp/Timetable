@@ -7,17 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.3.0" />
-        <PackageReference Include="Flurl" Version="3.0.2" />
-        <PackageReference Include="Flurl.Http" Version="3.2.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Optivulcan" Version="0.1.1" />
-        <PackageReference Include="StackExchange.Redis" Version="2.2.88" />
-        <PackageReference Include="Vulder.SharedKernel" Version="0.1.6" />
+        <PackageReference Include="Autofac" Version="6.3.0"/>
+        <PackageReference Include="Flurl" Version="3.0.2"/>
+        <PackageReference Include="Flurl.Http" Version="3.2.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="Optivulcan" Version="0.1.1"/>
+        <PackageReference Include="StackExchange.Redis" Version="2.2.88"/>
+        <PackageReference Include="Vulder.SharedKernel" Version="0.1.6"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Vulder.Timetable.Core\Vulder.Timetable.Core.csproj" />
+        <ProjectReference Include="..\Vulder.Timetable.Core\Vulder.Timetable.Core.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -20,11 +20,11 @@ public class ControllersTest : IDisposable
     {
         _server = WireMockServer.Start(new WireMockServerSettings
         {
-            Urls = new [] { "http://+:5001" },
+            Urls = new[] { "http://+:5001" },
             StartAdminInterface = true,
             ReadStaticMappings = true
         });
-        
+
         _schoolTestModel = new GetSchoolResponse
         {
             Id = Guid.NewGuid(),
@@ -32,7 +32,7 @@ public class ControllersTest : IDisposable
             SchoolUrl = "http://example.com",
             TimetableUrl = "https://vulderapp.github.io/fake-school/"
         };
-        
+
         _server.Given(Request.Create()
                 .WithPath("/school/GetSchool")
                 .UsingGet()
@@ -41,8 +41,13 @@ public class ControllersTest : IDisposable
                 .WithStatusCode(200)
                 .WithBodyAsJson(_schoolTestModel)
             );
-        
+
         Environment.SetEnvironmentVariable("BASE_API_URL", _server.Urls[0]);
+    }
+
+    public void Dispose()
+    {
+        _server.Dispose();
     }
 
     [Fact]
@@ -54,20 +59,16 @@ public class ControllersTest : IDisposable
 
         Assert.Equal(HttpStatusCode.OK, getBranchesResponse.StatusCode);
     }
-    
+
     [Fact]
     public async void GetTimetable_GET_200_StatusCode()
     {
         await using var application = new WebServerFactory();
         using var client = application.CreateClient();
-        using var getBranchesResponse = 
-            await client.GetAsync($"timetable/GetTimetable?schoolId={_schoolTestModel.Id}&className={ClassName}&shortPath={ShortUrl}");
-        
-        Assert.Equal(HttpStatusCode.OK, getBranchesResponse.StatusCode);
-    }
+        using var getBranchesResponse =
+            await client.GetAsync(
+                $"timetable/GetTimetable?schoolId={_schoolTestModel.Id}&className={ClassName}&shortPath={ShortUrl}");
 
-    public void Dispose()
-    {
-        _server.Dispose();
+        Assert.Equal(HttpStatusCode.OK, getBranchesResponse.StatusCode);
     }
 }

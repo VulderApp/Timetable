@@ -20,16 +20,17 @@ public class GetTimetableRequestHandler : IRequestHandler<GetTimetableRequestMod
         CancellationToken cancellationToken)
     {
         var timetableFromCache = await _timetableRepository.GetTimetableById(request.SchoolId, request.ClassName);
-        if (timetableFromCache?.Timetable != null && timetableFromCache.ExpiredAt < DateTimeOffset.Now) return timetableFromCache.Timetable;
+        if (timetableFromCache?.Timetable != null && timetableFromCache.ExpiredAt < DateTimeOffset.Now)
+            return timetableFromCache.Timetable;
 
         var schoolModel = await SchoolApi.GetSchoolModel(request.SchoolId);
         var newTimetable = await Api.GetTimetableAsync(schoolModel.TimetableUrl + request.ShortPath);
-        
+
         var timetableCache = new TimetableCache
         {
             Timetable = newTimetable
         }.CreateTimestamp();
-        
+
         await _timetableRepository.Create(request.SchoolId, request.ClassName, timetableCache);
 
         return newTimetable;

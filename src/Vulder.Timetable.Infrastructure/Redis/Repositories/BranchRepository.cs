@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using Optivulcan.Pocos;
 using StackExchange.Redis;
 using Vulder.Timetable.Core.ProjectAggregate.Branch;
 using Vulder.Timetable.Infrastructure.Redis.Interfaces;

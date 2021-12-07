@@ -28,6 +28,8 @@ public class TimetableRepository : ITimetableRepository
             : JsonConvert.DeserializeObject<TimetableCache>(timetable.ToString());
     }
 
-    private static string GetTimetableKey(Guid? schoolId, string? className) 
-        => $"{schoolId.ToString()}_{className}";
+    private static string GetTimetableKey(Guid? schoolId, string? className)
+    {
+        return $"{schoolId.ToString()}_{className}";
+    }
 }

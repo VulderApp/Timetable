@@ -20,7 +20,8 @@ public class GetBranchesRequestHandler : IRequestHandler<GetBranchesRequestModel
         CancellationToken cancellationToken)
     {
         var branchesFromCache = await _branchRepository.GetBranchById(request.SchoolId);
-        if (branchesFromCache != null && branchesFromCache.ExpiredAt < DateTimeOffset.Now) return branchesFromCache.Branches;
+        if (branchesFromCache != null && branchesFromCache.ExpiredAt < DateTimeOffset.Now)
+            return branchesFromCache.Branches;
 
         var schoolModel = await SchoolApi.GetSchoolModel(request.SchoolId);
         var newSchoolBranches = await Api.GetBranchListAsync(schoolModel.TimetableUrl);

@@ -1,4 +1,3 @@
-using Optivulcan.Pocos;
 using Vulder.Timetable.Core.ProjectAggregate.Branch;
 
 namespace Vulder.Timetable.Infrastructure.Redis.Interfaces;

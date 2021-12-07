@@ -1,6 +1,7 @@
 using MediatR;
 using Optivulcan;
 using Vulder.Timetable.Core.Models;
+using Vulder.Timetable.Core.ProjectAggregate.Branch;
 using Vulder.Timetable.Infrastructure.Api;
 using Vulder.Timetable.Infrastructure.Redis.Interfaces;
 
@@ -19,11 +20,15 @@ public class GetBranchesRequestHandler : IRequestHandler<GetBranchesRequestModel
         CancellationToken cancellationToken)
     {
         var branchesFromCache = await _branchRepository.GetBranchById(request.SchoolId);
-        if (branchesFromCache != null) return branchesFromCache;
+        if (branchesFromCache != null && branchesFromCache.ExpiredAt < DateTimeOffset.Now) return branchesFromCache.Branches;
 
         var schoolModel = await SchoolApi.GetSchoolModel(request.SchoolId);
         var newSchoolBranches = await Api.GetBranchListAsync(schoolModel.TimetableUrl);
-        await _branchRepository.Create(request.SchoolId, newSchoolBranches);
+        var branchCache = new BranchCache
+        {
+            Branches = newSchoolBranches
+        }.CreateTimestamp();
+        await _branchRepository.Create(request.SchoolId, branchCache);
 
         return newSchoolBranches;
     }

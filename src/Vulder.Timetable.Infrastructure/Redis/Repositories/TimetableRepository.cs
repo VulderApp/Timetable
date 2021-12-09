@@ -21,11 +21,18 @@ public class TimetableRepository : ITimetableRepository
 
     public async Task<TimetableCache?> GetTimetableById(Guid? schoolId, string? className)
     {
-        var timetable = await Timetables.StringGetAsync(GetTimetableKey(schoolId, className));
+        try
+        {
+            var timetable = await Timetables.StringGetAsync(GetTimetableKey(schoolId, className));
 
-        return timetable.ToString() == null
-            ? null
-            : JsonConvert.DeserializeObject<TimetableCache>(timetable.ToString());
+            return timetable.ToString() == null
+                ? null
+                : JsonConvert.DeserializeObject<TimetableCache>(timetable.ToString());
+        }
+        catch (JsonSerializationException)
+        {
+            return null;
+        }
     }
 
     private static string GetTimetableKey(Guid? schoolId, string? className)

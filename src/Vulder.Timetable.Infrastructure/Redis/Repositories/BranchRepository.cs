@@ -21,8 +21,15 @@ public class BranchRepository : IBranchRepository
 
     public async Task<BranchCache?> GetBranchById(Guid schoolId)
     {
-        var branch = await Branches.StringGetAsync(schoolId.ToString());
+        try
+        {
+            var branch = await Branches.StringGetAsync(schoolId.ToString());
 
-        return branch.ToString() == null ? null : JsonConvert.DeserializeObject<BranchCache>(branch.ToString());
+            return branch.ToString() == null ? null : JsonConvert.DeserializeObject<BranchCache>(branch.ToString());
+        }
+        catch (JsonSerializationException)
+        {
+            return null;
+        }
     }
 }

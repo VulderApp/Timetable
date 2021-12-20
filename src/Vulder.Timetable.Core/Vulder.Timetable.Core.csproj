@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Optivulcan" Version="0.1.1"/>
-        <PackageReference Include="Vulder.SharedKernel" Version="0.1.6"/>
+        <PackageReference Include="Optivulcan" Version="0.2.2" />
+        <PackageReference Include="Vulder.SharedKernel" Version="0.1.6" />
     </ItemGroup>
 
 </Project>

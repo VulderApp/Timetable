@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 using StackExchange.Redis;
 using Vulder.Timetable.Core.ProjectAggregate.Timetable;
 using Vulder.Timetable.Infrastructure.Redis.Interfaces;
@@ -16,7 +16,7 @@ public class TimetableRepository : ITimetableRepository
 
     public async Task Create(Guid? schoolId, string? className, TimetableCache timetable)
     {
-        await Timetables.StringSetAsync(GetTimetableKey(schoolId, className), JsonConvert.SerializeObject(timetable));
+        await Timetables.StringSetAsync(GetTimetableKey(schoolId, className), JsonSerializer.Serialize(timetable));
     }
 
     public async Task<TimetableCache?> GetTimetableById(Guid? schoolId, string? className)
@@ -27,9 +27,9 @@ public class TimetableRepository : ITimetableRepository
 
             return timetable.ToString() == null
                 ? null
-                : JsonConvert.DeserializeObject<TimetableCache>(timetable.ToString());
+                : JsonSerializer.Deserialize<TimetableCache>(timetable.ToString());
         }
-        catch (JsonSerializationException)
+        catch (JsonException)
         {
             return null;
         }

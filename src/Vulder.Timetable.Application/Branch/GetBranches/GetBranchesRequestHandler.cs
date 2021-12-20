@@ -24,7 +24,7 @@ public class GetBranchesRequestHandler : IRequestHandler<GetBranchesRequestModel
             return branchesFromCache.Branches;
 
         var schoolModel = await SchoolApi.GetSchoolModel(request.SchoolId);
-        var newSchoolBranches = await Api.GetBranchListAsync(schoolModel.TimetableUrl);
+        var newSchoolBranches = await OptivulcanApi.GetBranches(schoolModel.TimetableUrl!);
         var branchCache = new BranchCache
         {
             Branches = newSchoolBranches

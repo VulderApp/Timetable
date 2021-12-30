@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json;
 using StackExchange.Redis;
 using Vulder.Timetable.Core.ProjectAggregate.Branch;
 using Vulder.Timetable.Infrastructure.Redis.Interfaces;
@@ -16,7 +16,7 @@ public class BranchRepository : IBranchRepository
 
     public async Task Create(Guid schoolId, BranchCache branch)
     {
-        await Branches.StringSetAsync(schoolId.ToString(), JsonConvert.SerializeObject(branch));
+        await Branches.StringSetAsync(schoolId.ToString(), JsonSerializer.Serialize(branch));
     }
 
     public async Task<BranchCache?> GetBranchById(Guid schoolId)
@@ -25,9 +25,9 @@ public class BranchRepository : IBranchRepository
         {
             var branch = await Branches.StringGetAsync(schoolId.ToString());
 
-            return branch.ToString() == null ? null : JsonConvert.DeserializeObject<BranchCache>(branch.ToString());
+            return branch.ToString() == null ? null : JsonSerializer.Deserialize<BranchCache>(branch.ToString());
         }
-        catch (JsonSerializationException)
+        catch (JsonException)
         {
             return null;
         }

@@ -24,7 +24,7 @@ public class GetTimetableRequestHandler : IRequestHandler<GetTimetableRequestMod
             return timetableFromCache.Timetable;
 
         var schoolModel = await SchoolApi.GetSchoolModel(request.SchoolId);
-        var newTimetable = await Api.GetTimetableAsync(schoolModel.TimetableUrl + request.ShortPath);
+        var newTimetable = await OptivulcanApi.GetTimetable(schoolModel.TimetableUrl + request.ShortPath);
 
         var timetableCache = new TimetableCache
         {

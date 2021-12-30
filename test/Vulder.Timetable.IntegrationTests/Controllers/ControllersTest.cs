@@ -12,7 +12,7 @@ namespace Vulder.Timetable.IntegrationTests.Controllers;
 public class ControllersTest : IDisposable
 {
     private const string ClassName = "6A";
-    private const string ShortUrl = "%2Fplany%2Fs2.html";
+    private const string ShortUrl = "/plany/o1.html";
     private readonly GetSchoolResponse _schoolTestModel;
     private readonly WireMockServer _server;
 

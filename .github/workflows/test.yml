@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set locale to pl_PL.UTF-8
+        run: |
+          sudo locale-gen pl_PL.UTF-8
+          sudo update-locale LANG=pl_PL.UTF-8
+      - name: Display updated locale
+        run: date
       - name: Build the docker-compose stack
         run: docker-compose -f docker-compose.test.yml up -d
       - name: Check running containers

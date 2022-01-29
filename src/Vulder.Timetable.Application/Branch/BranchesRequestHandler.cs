@@ -1,23 +1,20 @@
 using MediatR;
-using Optivulcan;
 using Vulder.Timetable.Application.Cache;
 using Vulder.Timetable.Core.Models;
-using Vulder.Timetable.Core.ProjectAggregate.Branch;
-using Vulder.Timetable.Infrastructure.Api;
 using Vulder.Timetable.Infrastructure.Redis.Interfaces;
 
-namespace Vulder.Timetable.Application.Branch.GetBranches;
+namespace Vulder.Timetable.Application.Branch;
 
-public class GetBranchesRequestHandler : IRequestHandler<GetBranchesRequestModel, List<Optivulcan.Pocos.Branch>?>
+public class BranchesRequestHandler : IRequestHandler<BranchesRequestModel, List<Optivulcan.Pocos.Branch>?>
 {
     private readonly IBranchRepository _branchRepository;
 
-    public GetBranchesRequestHandler(IBranchRepository branchRepository)
+    public BranchesRequestHandler(IBranchRepository branchRepository)
     {
         _branchRepository = branchRepository;
     }
 
-    public async Task<List<Optivulcan.Pocos.Branch>?> Handle(GetBranchesRequestModel request,
+    public async Task<List<Optivulcan.Pocos.Branch>?> Handle(BranchesRequestModel request,
         CancellationToken cancellationToken)
     {
         var branchesFromCache = await _branchRepository.GetBranchById(request.SchoolId);

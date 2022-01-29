@@ -5,7 +5,7 @@ using Vulder.Timetable.Core.Models;
 namespace Vulder.Timetable.Api.Controllers.Timetable;
 
 [ApiController]
-[Route("/timetable/[controller]")]
+[Route("/timetable")]
 public class TimetableController : ControllerBase
 {
     private readonly IMediator _mediator;

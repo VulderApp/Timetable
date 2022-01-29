@@ -5,7 +5,7 @@ using Vulder.Timetable.Core.ProjectAggregate.Timetable;
 using Vulder.Timetable.Infrastructure.Api;
 using Vulder.Timetable.Infrastructure.Redis.Interfaces;
 
-namespace Vulder.Timetable.Application.Timetable.GetTimetable;
+namespace Vulder.Timetable.Application.Timetable;
 
 public class TimetableRequestHandler : IRequestHandler<TimetableRequestModel, Optivulcan.Pocos.Timetable>
 {

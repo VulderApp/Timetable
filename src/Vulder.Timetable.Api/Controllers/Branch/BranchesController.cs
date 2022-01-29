@@ -5,7 +5,7 @@ using Vulder.Timetable.Core.Models;
 namespace Vulder.Timetable.Api.Controllers.Branch;
 
 [ApiController]
-[Route("branch/[controller]")]
+[Route("/branches")]
 public class GetBranchesController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -18,7 +18,7 @@ public class GetBranchesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetBranches([FromQuery] Guid schoolId)
     {
-        var schoolBranch = await _mediator.Send(new GetBranchesRequestModel
+        var schoolBranch = await _mediator.Send(new BranchesRequestModel
         {
             SchoolId = schoolId
         });

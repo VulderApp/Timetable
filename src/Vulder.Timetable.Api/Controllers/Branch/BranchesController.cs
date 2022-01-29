@@ -5,7 +5,7 @@ using Vulder.Timetable.Core.Models;
 namespace Vulder.Timetable.Api.Controllers.Branch;
 
 [ApiController]
-[Route("branch/[controller]")]
+[Route("/branches")]
 public class GetBranchesController : ControllerBase
 {
     private readonly IMediator _mediator;

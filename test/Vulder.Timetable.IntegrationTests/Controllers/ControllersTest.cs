@@ -11,7 +11,6 @@ namespace Vulder.Timetable.IntegrationTests.Controllers;
 
 public class ControllersTest : IDisposable
 {
-    private const string ClassName = "6A";
     private const string ShortUrl = "/plany/o1.html";
     private readonly GetSchoolResponse _schoolTestModel;
     private readonly WireMockServer _server;
@@ -51,23 +50,23 @@ public class ControllersTest : IDisposable
     }
 
     [Fact]
-    public async void GetBranches_GET_200_StatusCode()
+    public async void Branches_GET_200_StatusCode()
     {
         await using var application = new WebServerFactory();
         using var client = application.CreateClient();
-        using var getBranchesResponse = await client.GetAsync($"branch/GetBranches?schoolId={_schoolTestModel.Id}");
+        using var getBranchesResponse = await client.GetAsync($"branches?schoolId={_schoolTestModel.Id}");
 
         Assert.Equal(HttpStatusCode.OK, getBranchesResponse.StatusCode);
     }
 
     [Fact]
-    public async void GetTimetable_GET_200_StatusCode()
+    public async void Timetable_GET_200_StatusCode()
     {
         await using var application = new WebServerFactory();
         using var client = application.CreateClient();
         using var getBranchesResponse =
             await client.GetAsync(
-                $"timetable/Timetable?schoolId={_schoolTestModel.Id}&shortPath={ShortUrl}");
+                $"timetable?schoolId={_schoolTestModel.Id}&shortPath={ShortUrl}");
 
         Assert.Equal(HttpStatusCode.OK, getBranchesResponse.StatusCode);
     }

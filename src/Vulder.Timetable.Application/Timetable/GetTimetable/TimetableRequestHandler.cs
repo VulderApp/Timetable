@@ -7,19 +7,19 @@ using Vulder.Timetable.Infrastructure.Redis.Interfaces;
 
 namespace Vulder.Timetable.Application.Timetable.GetTimetable;
 
-public class GetTimetableRequestHandler : IRequestHandler<GetTimetableRequestModel, Optivulcan.Pocos.Timetable>
+public class TimetableRequestHandler : IRequestHandler<TimetableRequestModel, Optivulcan.Pocos.Timetable>
 {
     private readonly ITimetableRepository _timetableRepository;
 
-    public GetTimetableRequestHandler(ITimetableRepository timetableRepository)
+    public TimetableRequestHandler(ITimetableRepository timetableRepository)
     {
         _timetableRepository = timetableRepository;
     }
 
-    public async Task<Optivulcan.Pocos.Timetable> Handle(GetTimetableRequestModel request,
+    public async Task<Optivulcan.Pocos.Timetable> Handle(TimetableRequestModel request,
         CancellationToken cancellationToken)
     {
-        var timetableFromCache = await _timetableRepository.GetTimetableById(request.SchoolId, request.ClassName);
+        var timetableFromCache = await _timetableRepository.GetTimetableById(request.SchoolId, request.Class);
         if (timetableFromCache?.Timetable != null && timetableFromCache.ExpiredAt < DateTimeOffset.Now)
             return timetableFromCache.Timetable;
 
@@ -31,7 +31,7 @@ public class GetTimetableRequestHandler : IRequestHandler<GetTimetableRequestMod
             Timetable = newTimetable
         }.CreateTimestamp();
 
-        await _timetableRepository.Create(request.SchoolId, request.ClassName, timetableCache);
+        await _timetableRepository.Create(request.SchoolId, request.Class, timetableCache);
 
         return newTimetable;
     }

@@ -67,7 +67,7 @@ public class ControllersTest : IDisposable
         using var client = application.CreateClient();
         using var getBranchesResponse =
             await client.GetAsync(
-                $"timetable/GetTimetable?schoolId={_schoolTestModel.Id}&className={ClassName}&shortPath={ShortUrl}");
+                $"timetable/Timetable?schoolId={_schoolTestModel.Id}&shortPath={ShortUrl}");
 
         Assert.Equal(HttpStatusCode.OK, getBranchesResponse.StatusCode);
     }

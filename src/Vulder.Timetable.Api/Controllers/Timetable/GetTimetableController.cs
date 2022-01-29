@@ -6,23 +6,28 @@ namespace Vulder.Timetable.Api.Controllers.Timetable;
 
 [ApiController]
 [Route("/timetable/[controller]")]
-public class GetTimetableController : ControllerBase
+public class TimetableController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public GetTimetableController(IMediator mediator)
+    public TimetableController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetTimetable([FromQuery] Guid schoolId, [FromQuery] string className,
-        [FromQuery] string shortPath)
+    public async Task<IActionResult> GetTimetable([FromQuery] Guid schoolId, [FromQuery] string shortPath)
     {
-        var timetable = await _mediator.Send(new GetTimetableRequestModel
+        var className = await _mediator.Send(new ResolveClassRequestModel
         {
             SchoolId = schoolId,
-            ClassName = className,
+            Path = shortPath
+        });
+
+        var timetable = await _mediator.Send(new TimetableRequestModel
+        {
+            SchoolId = schoolId,
+            Class = className,
             ShortPath = shortPath
         });
 

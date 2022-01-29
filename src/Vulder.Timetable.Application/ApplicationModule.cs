@@ -15,7 +15,7 @@ public class ApplicationModule : Module
     public ApplicationModule()
     {
         _assemblies.Add(Assembly.GetAssembly(typeof(GetBranchesRequestHandler)));
-        _assemblies.Add(Assembly.GetAssembly(typeof(GetTimetableRequestHandler)));
+        _assemblies.Add(Assembly.GetAssembly(typeof(TimetableRequestHandler)));
     }
 
     protected override void Load(ContainerBuilder builder)

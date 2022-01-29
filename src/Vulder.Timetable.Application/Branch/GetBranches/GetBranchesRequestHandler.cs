@@ -1,5 +1,6 @@
 using MediatR;
 using Optivulcan;
+using Vulder.Timetable.Application.Cache;
 using Vulder.Timetable.Core.Models;
 using Vulder.Timetable.Core.ProjectAggregate.Branch;
 using Vulder.Timetable.Infrastructure.Api;
@@ -23,14 +24,8 @@ public class GetBranchesRequestHandler : IRequestHandler<GetBranchesRequestModel
         if (branchesFromCache != null && branchesFromCache.ExpiredAt < DateTimeOffset.Now)
             return branchesFromCache.Branches;
 
-        var schoolModel = await SchoolApi.GetSchoolModel(request.SchoolId);
-        var newSchoolBranches = await OptivulcanApi.GetBranches(schoolModel.TimetableUrl!);
-        var branchCache = new BranchCache
-        {
-            Branches = newSchoolBranches
-        }.CreateTimestamp();
-        await _branchRepository.Create(request.SchoolId, branchCache);
+        var newBranches = await CacheBranch.Create(_branchRepository, request.SchoolId);
 
-        return newSchoolBranches;
+        return newBranches.Branches;
     }
 }

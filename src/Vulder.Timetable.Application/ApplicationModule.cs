@@ -2,8 +2,9 @@ using System.Reflection;
 using Autofac;
 using MediatR;
 using MediatR.Pipeline;
-using Vulder.Timetable.Application.Branch.GetBranches;
-using Vulder.Timetable.Application.Timetable.GetTimetable;
+using Vulder.Timetable.Application.Branch;
+using Vulder.Timetable.Application.Classname;
+using Vulder.Timetable.Application.Timetable;
 using Module = Autofac.Module;
 
 namespace Vulder.Timetable.Application;
@@ -14,8 +15,9 @@ public class ApplicationModule : Module
 
     public ApplicationModule()
     {
-        _assemblies.Add(Assembly.GetAssembly(typeof(GetBranchesRequestHandler)));
+        _assemblies.Add(Assembly.GetAssembly(typeof(BranchesRequestHandler)));
         _assemblies.Add(Assembly.GetAssembly(typeof(TimetableRequestHandler)));
+        _assemblies.Add(Assembly.GetAssembly(typeof(ResolveClassRequestHandler)));
     }
 
     protected override void Load(ContainerBuilder builder)

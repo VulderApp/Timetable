@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Vulder.SharedKernel;
 using Vulder.Timetable.Application;
 using Vulder.Timetable.Infrastructure;
 

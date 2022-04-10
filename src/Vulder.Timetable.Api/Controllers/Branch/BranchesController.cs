@@ -6,11 +6,11 @@ namespace Vulder.Timetable.Api.Controllers.Branch;
 
 [ApiController]
 [Route("/branches")]
-public class GetBranchesController : ControllerBase
+public class BranchesController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public GetBranchesController(IMediator mediator)
+    public BranchesController(IMediator mediator)
     {
         _mediator = mediator;
     }

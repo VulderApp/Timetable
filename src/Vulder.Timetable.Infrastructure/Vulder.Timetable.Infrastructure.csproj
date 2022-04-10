@@ -13,8 +13,8 @@
         <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="Optivulcan" Version="0.2.4" />
+        <PackageReference Include="Vulder.SharedKernel" Version="0.1.10" />
         <PackageReference Include="StackExchange.Redis" Version="2.5.61" />
-        <PackageReference Include="Vulder.SharedKernel" Version="0.1.9" />
     </ItemGroup>
 
     <ItemGroup>

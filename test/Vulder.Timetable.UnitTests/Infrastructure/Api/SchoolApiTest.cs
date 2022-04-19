@@ -23,7 +23,7 @@ public class SchoolApiTest
 
         var server = WireMockServer.Start();
         server.Given(Request.Create()
-                .WithPath("/school/GetSchool")
+                .WithPath("/school")
                 .UsingGet()
                 .WithParam("schoolId", schoolModel.Id.ToString()))
             .RespondWith(Response.Create()

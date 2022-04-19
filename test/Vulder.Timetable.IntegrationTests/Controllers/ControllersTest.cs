@@ -33,7 +33,7 @@ public class ControllersTest : IDisposable
         };
 
         _server.Given(Request.Create()
-                .WithPath("/school/GetSchool")
+                .WithPath("/school")
                 .UsingGet()
                 .WithParam("schoolId", _schoolTestModel.Id.ToString()))
             .RespondWith(Response.Create()

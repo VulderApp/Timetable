@@ -20,7 +20,8 @@ public class TimetableRequestHandler : IRequestHandler<TimetableRequestModel, Op
         CancellationToken cancellationToken)
     {
         var timetableFromCache = await _timetableRepository.GetTimetableById(request.SchoolId, request.Class);
-        if (timetableFromCache?.Timetable != null && timetableFromCache.ExpiredAt < DateTimeOffset.Now)
+        var now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        if (timetableFromCache?.Timetable != null && timetableFromCache.ExpiredAt > now)
             return timetableFromCache.Timetable;
 
         var schoolModel = await SchoolApi.GetSchoolModel(request.SchoolId);

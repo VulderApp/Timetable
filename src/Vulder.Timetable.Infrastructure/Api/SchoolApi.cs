@@ -10,7 +10,7 @@ public static class SchoolApi
     public static async Task<GetSchoolResponse> GetSchoolModel(Guid? schoolId)
     {
         return await Constants.BaseApiUrl
-            .AppendPathSegment("/school/GetSchool")
+            .AppendPathSegment("/school")
             .SetQueryParam("schoolId", schoolId)
             .WithClient(new FlurlClient(new HttpClient(new HttpClientHandler
             {

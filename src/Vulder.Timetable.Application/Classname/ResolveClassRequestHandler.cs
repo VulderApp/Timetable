@@ -20,7 +20,8 @@ public class ResolveClassRequestHandler : IRequestHandler<ResolveClassRequestMod
             throw new Exception("Path param is null");
 
         var branchesFromCache = await _branchRepository.GetBranchById(request.SchoolId);
-        if (branchesFromCache != null && branchesFromCache.ExpiredAt < DateTimeOffset.Now)
+        var now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        if (branchesFromCache != null && branchesFromCache.ExpiredAt > now)
             return GetClassFromCollection(branchesFromCache.Branches!, request.Path);
 
         var branches = await CacheBranch.Create(_branchRepository, request.SchoolId);

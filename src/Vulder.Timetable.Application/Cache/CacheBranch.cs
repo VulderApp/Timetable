@@ -17,7 +17,7 @@ public class CacheBranch
             Branches = newSchoolBranches
         }.CreateTimestamp();
 
-        if (branchCache.Branches == null) throw new Exception("Branches");
+        if (branchCache.Branches == null) throw new Exception("Branches is null");
 
         await branchRepository.Create(schoolId, branchCache);
 

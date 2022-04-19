@@ -18,7 +18,8 @@ public class BranchesRequestHandler : IRequestHandler<BranchesRequestModel, List
         CancellationToken cancellationToken)
     {
         var branchesFromCache = await _branchRepository.GetBranchById(request.SchoolId);
-        if (branchesFromCache != null && branchesFromCache.ExpiredAt < DateTimeOffset.Now)
+        var now = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        if (branchesFromCache != null && branchesFromCache.ExpiredAt > now)
             return branchesFromCache.Branches;
 
         var newBranches = await CacheBranch.Create(_branchRepository, request.SchoolId);

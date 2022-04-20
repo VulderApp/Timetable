@@ -1,7 +1,8 @@
 # Timetable
 [![Test](https://github.com/VulderApp/Timetable/actions/workflows/test.yml/badge.svg)](https://github.com/VulderApp/Timetable/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/VulderApp/Timetable/branch/dev/graph/badge.svg?token=JG1HGG75FK)](https://codecov.io/gh/VulderApp/Timetable)
 
-Microservice for getting school branches and timetables 
+Microservice for getting school branches and timetables
 
 ## Run development server
 ```bash

@@ -1,7 +1,5 @@
 name: Build
 on:
-  pull_request:
-    branches: [ dev ]
   push:
     branches: [ main ]
 jobs:
@@ -26,4 +24,4 @@ jobs:
           registry: ghcr.io
           context: .
           push: true
-          tags: ghcr.io/vulderapp/timetable:test-2
+          tags: ${{ steps.meta.outputs.tags }}

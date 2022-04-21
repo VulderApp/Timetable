@@ -23,7 +23,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v1
         with:
-          registry: ghcr.io
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}

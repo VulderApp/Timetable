@@ -24,4 +24,4 @@ jobs:
           registry: ghcr.io
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ghcr.io/vulderapp/timetable:${{ steps.meta.outputs.tags }}

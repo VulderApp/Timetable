@@ -19,11 +19,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v1
         with:
-          images: ${{ env.REGISTRY }}/timetable
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v1
         with:
           registry: ghcr.io
+          context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

@@ -14,7 +14,7 @@
         </PackageReference>
         <PackageReference Include="Flurl.Http" Version="3.2.3" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-        <PackageReference Include="WireMock.Net" Version="1.4.41" />
+        <PackageReference Include="WireMock.Net" Version="1.5.12" />
         <PackageReference Include="xunit" Version="2.4.1" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

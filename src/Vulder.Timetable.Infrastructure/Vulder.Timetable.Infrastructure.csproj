@@ -11,7 +11,7 @@
         <PackageReference Include="Flurl" Version="3.0.5" />
         <PackageReference Include="Flurl.Http" Version="3.2.3" />
         <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
         <PackageReference Include="Optivulcan" Version="0.2.5" />
         <PackageReference Include="Vulder.SharedKernel" Version="0.1.13" />
         <PackageReference Include="StackExchange.Redis" Version="2.5.61" />
